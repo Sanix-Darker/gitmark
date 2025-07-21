@@ -15,7 +15,6 @@
       ".mr-version-discussions .note-wrapper",
       ".discussion-wrapper .note",
       ".discussion-reply-holder .note",
-      ".note-body",
       ".discussion-body .note"
     ],
     "headerSelectors": [
@@ -74,7 +73,6 @@
       ".review-comment",
       ".js-review-comment",
       ".review-comment-contents",
-      ".js-comment",
       ".js-timeline-item .timeline-comment",
       ".js-timeline-item .js-comment-container",
       ".js-timeline-item",
@@ -83,7 +81,6 @@
       ".js-discussion .js-comment-container",
       ".pull-request-review-comment",
       ".issue-comment-contents",
-      ".js-comment-body",
       "[data-testid=\"issue-comment\"]",
       "[data-testid=\"timeline-comment\"]",
       ".comment-holder",
@@ -124,9 +121,7 @@
     ],
     "dataSelectors": {
       "commentText": [
-        ".comment-body",
         ".timeline-comment-text",
-        ".js-comment-body",
         ".markdown-body",
         ".NewMarkdownViewer-module__safe-html-box--cRsz0",
         "p"
@@ -204,7 +199,6 @@
       "._1e0c11p5",
       ".css-1j1v6qw",
       "[id^=\"portal-parent-pr-dialog-conversation\"]",
-      ".ak-renderer-wrapper",
       ".comment-container",
       ".comment-wrapper",
       ".activity-comment",
