@@ -13,7 +13,7 @@
     "test:coverage": "jest --coverage --config jest.config.cjs",
     "lint": "eslint src/ *.js --ext .js,.ts,.tsx",
     "lint:fix": "eslint src/ *.js --ext .js,.ts,.tsx --fix",
-    "build:cross-browser": "node cross-browser-build.js",
+    "build:cross-browser": "node cross-browser-build.cjs",
     "build:chrome": "npm run build && cp manifest.json dist/",
     "build:firefox": "npm run build && cp manifest-v2.json dist/manifest.json",
     "build:safari": "npm run build && cp safari-manifest.json dist/manifest.json"

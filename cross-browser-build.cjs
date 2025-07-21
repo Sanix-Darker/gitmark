@@ -29,7 +29,8 @@ const commonFiles = [
   'options.html',
   'options.js',
   'styles.css',
-  'icons/'
+  'icons/',
+  'config/'
 ];
 
 function copyFile(src, dest) {
