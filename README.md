@@ -15,6 +15,7 @@ A sophisticated web extension for bookmarking comments across multiple Git platf
 - **CodeGiant** (codegiant.io)
 - **GitKraken** (gitkraken.com)
 
+
 ## FEATURES
 
 ### CORE BOOKMARKING
