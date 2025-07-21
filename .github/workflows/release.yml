@@ -47,42 +47,17 @@ jobs:
         zip -r ../gitbookmark-safari-${{ github.ref_name }}.zip .
 
     - name: Create Release
+      id: create_release
       uses: softprops/action-gh-release@v2
       if: startsWith(github.ref, 'refs/tags/')
       with:
-        name: Release ${{ github.ref_name }}
+        name: ${{ github.ref_name }}
         tag_name: ${{ github.ref_name }}
         draft: false
         prerelease: false
+        files: |
+          gitbookmark-chrome-${{ github.ref_name }}.zip
+          gitbookmark-firefox-${{ github.ref_name }}.zip
+          gitbookmark-safari-${{ github.ref_name }}.zip
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-    - name: Upload Chrome Extension
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./gitbookmark-chrome-${{ github.ref_name }}.zip
-        asset_name: gitbookmark-chrome-${{ github.ref_name }}.zip
-        asset_content_type: application/zip
-
-    - name: Upload Firefox Extension
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./gitbookmark-firefox-${{ github.ref_name }}.zip
-        asset_name: gitbookmark-firefox-${{ github.ref_name }}.zip
-        asset_content_type: application/zip
-
-    - name: Upload Safari Extension
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./gitbookmark-safari-${{ github.ref_name }}.zip
-        asset_name: gitbookmark-safari-${{ github.ref_name }}.zip
-        asset_content_type: application/zip
