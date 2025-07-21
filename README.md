@@ -1,5 +1,7 @@
 # GitBookmark - Universal Git Comment Bookmark Extension
 
+![image](./screenshot.png)
+
 A sophisticated web extension for bookmarking comments across multiple Git platforms with repository-centric organization.
 
 ## SUPPORTED PLATFORMS
