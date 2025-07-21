@@ -1,0 +1,92 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Run linting
+      run: npm run lint
+
+    - name: Run tests
+      run: npm test
+
+    - name: Run tests with coverage
+      run: npm run test:coverage
+
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v3
+      with:
+        file: ./coverage/lcov.info
+        flags: unittests
+        name: codecov-umbrella
+
+    - name: Build extension
+      run: npm run build
+
+    - name: Build cross-browser versions
+      run: npm run build:cross-browser
+
+  security:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Use Node.js 20.x
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20.x
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Run security audit
+      run: npm audit --audit-level moderate
+
+    - name: Check for vulnerabilities
+      run: npx audit-ci --moderate
+
+  validate-manifest:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Validate Chrome manifest
+      run: |
+        node -e "
+          const manifest = require('./manifest.json');
+          console.log('Chrome manifest valid:', manifest.manifest_version === 3);
+          if (manifest.manifest_version !== 3) process.exit(1);
+        "
+
+    - name: Validate Firefox manifest
+      run: |
+        node -e "
+          const manifest = require('./manifest-v2.json');
+          console.log('Firefox manifest valid:', manifest.manifest_version === 2);
+          if (manifest.manifest_version !== 2) process.exit(1);
+        "

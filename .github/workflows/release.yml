@@ -1,0 +1,83 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Use Node.js 20.x
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20.x
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Run tests
+      run: npm test
+
+    - name: Build all browser versions
+      run: npm run build:cross-browser
+
+    - name: Create Chrome extension package
+      run: |
+        cd dist-chrome
+        zip -r ../gitbookmark-chrome-${{ github.ref_name }}.zip .
+
+    - name: Create Firefox extension package
+      run: |
+        cd dist-firefox
+        zip -r ../gitbookmark-firefox-${{ github.ref_name }}.zip .
+
+    - name: Create Safari extension package
+      run: |
+        cd dist-safari
+        zip -r ../gitbookmark-safari-${{ github.ref_name }}.zip .
+
+    - name: Create Release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
+        draft: false
+        prerelease: false
+
+    - name: Upload Chrome Extension
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./gitbookmark-chrome-${{ github.ref_name }}.zip
+        asset_name: gitbookmark-chrome-${{ github.ref_name }}.zip
+        asset_content_type: application/zip
+
+    - name: Upload Firefox Extension
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./gitbookmark-firefox-${{ github.ref_name }}.zip
+        asset_name: gitbookmark-firefox-${{ github.ref_name }}.zip
+        asset_content_type: application/zip
+
+    - name: Upload Safari Extension
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./gitbookmark-safari-${{ github.ref_name }}.zip
+        asset_name: gitbookmark-safari-${{ github.ref_name }}.zip
+        asset_content_type: application/zip
