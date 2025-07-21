@@ -1,0 +1,392 @@
+{
+  "gitlab": {
+    "name": "GitLab",
+    "domains": ["gitlab.com", "gitlab."],
+    "commentSelectors": [
+      ".note-wrapper:not(.system-note)",
+      ".note-wrapper .note:not(.system-note)",
+      ".timeline-entry:not(.system-note)",
+      ".note:not(.system-note)",
+      "[data-note-type=\"DiscussionNote\"]",
+      "[data-note-type=\"DiffNote\"]",
+      ".discussion-notes .note",
+      ".notes .note-wrapper",
+      ".diff-discussions .note-wrapper",
+      ".mr-version-discussions .note-wrapper",
+      ".discussion-wrapper .note",
+      ".discussion-reply-holder .note",
+      ".note-body",
+      ".discussion-body .note"
+    ],
+    "headerSelectors": [
+      ".note-header",
+      ".note-header-info",
+      ".note-header-author-name",
+      ".timeline-entry-header",
+      ".note-header-content",
+      ".note-header-author",
+      ".discussion-header"
+    ],
+    "actionsSelectors": [
+      ".note-actions",
+      ".timeline-entry-actions",
+      ".note-header-actions",
+      ".note-actions-item",
+      ".discussion-actions"
+    ],
+    "dataSelectors": {
+      "commentText": [
+        ".md",
+        ".note-text",
+        "p"
+      ],
+      "author": [
+        "[data-username]",
+        ".author",
+        ".note-header-author-name",
+        "a[href*=\"/users/\"]"
+      ],
+      "avatar": [
+        ".avatar",
+        "img[alt*=\"avatar\"]",
+        ".note-header-author-name img"
+      ],
+      "timestamp": [
+        "time",
+        ".created-at",
+        ".note-created-ago",
+        "[datetime]"
+      ]
+    }
+  },
+  "github": {
+    "name": "GitHub",
+    "domains": ["github.com", "github."],
+    "commentSelectors": [
+      ".react-issue-comment",
+      "[data-testid=\"comment-viewer-outer-box\"]",
+      ".IssueCommentViewer-module__IssueCommentLayout--PA204",
+      ".IssueCommentViewer-module__IssueCommentContent--kTuSn",
+      ".timeline-comment-wrapper",
+      ".timeline-comment",
+      ".js-comment-container",
+      ".timeline-comment-wrapper .timeline-comment",
+      ".review-comment",
+      ".js-review-comment",
+      ".review-comment-contents",
+      ".js-comment",
+      ".js-timeline-item .timeline-comment",
+      ".js-timeline-item .js-comment-container",
+      ".js-timeline-item",
+      ".discussion-item-review .review-comment",
+      ".js-discussion .timeline-comment",
+      ".js-discussion .js-comment-container",
+      ".pull-request-review-comment",
+      ".issue-comment-contents",
+      ".js-comment-body",
+      "[data-testid=\"issue-comment\"]",
+      "[data-testid=\"timeline-comment\"]",
+      ".comment-holder",
+      ".comment-wrapper"
+    ],
+    "headerSelectors": [
+      "[data-testid=\"comment-header\"]",
+      ".ActivityHeader-module__ActivityHeaderContainer--NuqfC",
+      ".ActivityHeader-module__activityHeader--Flalv",
+      ".ActivityHeader-module__ActionsContainer--eBuKL",
+      ".ActivityHeader-module__ActionsButtonsContainer--hvWAL",
+      "[data-testid=\"comment-header-right-side-items\"]",
+      ".timeline-comment-header",
+      ".timeline-comment-header-text",
+      ".timeline-comment-header .d-flex",
+      ".timeline-comment-header .flex-items-center",
+      ".review-comment-header",
+      ".js-comment-header",
+      ".comment-header",
+      ".issue-comment-header",
+      ".pull-request-comment-header",
+      ".comment-meta"
+    ],
+    "actionsSelectors": [
+      ".ActivityHeader-module__ActionsButtonsContainer--hvWAL",
+      "[data-testid=\"comment-header-right-side-items\"]",
+      ".ActivityHeader-module__ActionsContainer--eBuKL",
+      ".CommentActions-module__CommentActionsIconButton--BoTOQ",
+      ".timeline-comment-actions",
+      ".comment-actions",
+      ".review-comment-actions",
+      ".js-comment-actions",
+      ".timeline-comment-header .float-right",
+      ".timeline-comment-header .d-flex:last-child",
+      ".timeline-comment-header .d-flex",
+      ".flex-items-center:last-child",
+      ".comment-reactions"
+    ],
+    "dataSelectors": {
+      "commentText": [
+        ".comment-body",
+        ".timeline-comment-text",
+        ".js-comment-body",
+        ".markdown-body",
+        ".NewMarkdownViewer-module__safe-html-box--cRsz0",
+        "p"
+      ],
+      "author": [
+        "[data-username]",
+        ".author",
+        ".timeline-comment-header .author",
+        ".js-discussion-header .author",
+        "a[data-user]",
+        ".ActivityHeader-module__AuthorLink--iofTU",
+        "[data-testid=\"avatar-link\"]"
+      ],
+      "avatar": [
+        ".avatar",
+        "img[alt*=\"avatar\"]",
+        ".timeline-comment-header img",
+        "[data-testid=\"github-avatar\"]",
+        "img[src*=\"avatar\"]"
+      ],
+      "timestamp": [
+        "time",
+        ".timeline-comment-header time",
+        "[datetime]",
+        "relative-time"
+      ]
+    }
+  },
+  "gitea": {
+    "name": "Gitea",
+    "domains": ["gitea.io", "codeberg.org", "gitea."],
+    "commentSelectors": [
+      ".comment-container",
+      ".comment-wrapper",
+      ".timeline-item",
+      ".comment"
+    ],
+    "headerSelectors": [
+      ".comment-header",
+      ".comment-meta",
+      ".timeline-item-header"
+    ],
+    "actionsSelectors": [
+      ".comment-actions",
+      ".comment-header-actions"
+    ],
+    "dataSelectors": {
+      "commentText": [
+        ".comment-body",
+        ".render-content",
+        "p"
+      ],
+      "author": [
+        ".author",
+        "a[href*=\"/user/\"]",
+        ".comment-header .author"
+      ],
+      "avatar": [
+        ".avatar",
+        "img[alt*=\"avatar\"]"
+      ],
+      "timestamp": [
+        "time",
+        ".comment-time",
+        "[datetime]"
+      ]
+    }
+  },
+  "bitbucket": {
+    "name": "Bitbucket",
+    "domains": ["bitbucket.org", "bitbucket."],
+    "commentSelectors": [
+      "[id^=\"comment-\"]",
+      "div[id*=\"comment-\"]",
+      "._1e0c11p5",
+      ".css-1j1v6qw",
+      "[id^=\"portal-parent-pr-dialog-conversation\"]",
+      ".ak-renderer-wrapper",
+      ".comment-container",
+      ".comment-wrapper",
+      ".activity-comment",
+      ".pr-comment"
+    ],
+    "headerSelectors": [
+      "._1e0c1txw h3",
+      "._11c82smr",
+      "h3._11c82smr",
+      "._1e0c1txw._vchhusvi._gy1p12x7",
+      ".css-1j1v6qw",
+      ".comment-header",
+      ".activity-header",
+      ".pr-comment-header"
+    ],
+    "actionsSelectors": [
+      ".css-npnw5u",
+      "._19itglyw._vchhusvi._r06hglyw._syaz1fxt",
+      ".css-11u50rl",
+      ".comment-actions",
+      ".activity-actions"
+    ],
+    "dataSelectors": {
+      "commentText": [
+        ".ak-renderer-document",
+        ".ak-renderer-wrapper",
+        "[data-renderer-start-pos]",
+        ".css-fqvtun",
+        ".comment-content",
+        ".rendered-content",
+        "p"
+      ],
+      "author": [
+        "[data-testid=\"profileCardTrigger\"] .css-8ik9me",
+        ".css-8ik9me",
+        "[aria-label*=\"More information about\"]",
+        "span[id*=\"uid\"][hidden]",
+        ".author",
+        ".comment-author"
+      ],
+      "avatar": [
+        "[data-vc=\"avatar-image\"]",
+        ".css-13ep12v",
+        "img[src*=\"avatar-management\"]",
+        ".avatar",
+        "img[alt*=\"avatar\"]"
+      ],
+      "timestamp": [
+        "time[datetime]",
+        "a[href*=\"#comment-\"] time",
+        "._mizu194a time",
+        "time",
+        ".comment-time",
+        "[datetime]"
+      ]
+    }
+  },
+  "sourcehut": {
+    "name": "SourceHut",
+    "domains": ["sr.ht"],
+    "commentSelectors": [
+      "div.event",
+      ".comment",
+      ".event-comment",
+      ".discussion-comment"
+    ],
+    "headerSelectors": [
+      ".comment-header",
+      ".event-header"
+    ],
+    "actionsSelectors": [
+      ".comment-actions"
+    ],
+    "dataSelectors": {
+      "commentText": [
+        ".comment-body",
+        "p"
+      ],
+      "author": [
+        ".author",
+        ".comment-author"
+      ],
+      "avatar": [
+        ".avatar"
+      ],
+      "timestamp": [
+        "time",
+        "[datetime]"
+      ]
+    }
+  },
+  "azure": {
+    "name": "Azure DevOps",
+    "domains": ["dev.azure.com", "visualstudio.com"],
+    "commentSelectors": [
+      ".discussion-thread",
+      ".work-item-comment",
+      ".comment-container"
+    ],
+    "headerSelectors": [
+      ".discussion-thread-header",
+      ".comment-header"
+    ],
+    "actionsSelectors": [
+      ".comment-actions"
+    ],
+    "dataSelectors": {
+      "commentText": [
+        ".comment-content",
+        "p"
+      ],
+      "author": [
+        ".author",
+        ".comment-author"
+      ],
+      "avatar": [
+        ".avatar"
+      ],
+      "timestamp": [
+        "time",
+        "[datetime]"
+      ]
+    }
+  },
+  "codegiant": {
+    "name": "CodeGiant",
+    "domains": ["codegiant.io"],
+    "commentSelectors": [
+      ".comment-item",
+      ".discussion-item",
+      ".review-comment"
+    ],
+    "headerSelectors": [
+      ".comment-header"
+    ],
+    "actionsSelectors": [
+      ".comment-actions"
+    ],
+    "dataSelectors": {
+      "commentText": [
+        ".comment-body",
+        "p"
+      ],
+      "author": [
+        ".author"
+      ],
+      "avatar": [
+        ".avatar"
+      ],
+      "timestamp": [
+        "time"
+      ]
+    }
+  },
+  "gitkraken": {
+    "name": "GitKraken",
+    "domains": ["gitkraken.com"],
+    "commentSelectors": [
+      ".comment-item",
+      ".discussion-item",
+      ".review-comment"
+    ],
+    "headerSelectors": [
+      ".comment-header"
+    ],
+    "actionsSelectors": [
+      ".comment-actions"
+    ],
+    "dataSelectors": {
+      "commentText": [
+        ".comment-body",
+        "p"
+      ],
+      "author": [
+        ".author"
+      ],
+      "avatar": [
+        ".avatar"
+      ],
+      "timestamp": [
+        "time"
+      ]
+    }
+  }
+}

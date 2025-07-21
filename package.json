@@ -1,0 +1,30 @@
+{
+  "name": "gitbookmark-extension",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Universal bookmark manager for Git platform comments",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "build:cross-browser": "node cross-browser-build.js",
+    "build:chrome": "npm run build && cp manifest.json dist/",
+    "build:firefox": "npm run build && cp manifest-v2.json dist/manifest.json",
+    "build:safari": "npm run build && cp safari-manifest.json dist/manifest.json"
+  },
+  "dependencies": {
+    "preact": "^10.19.3",
+    "preact-render-to-string": "^6.3.1",
+    "@preact/signals": "^1.2.2"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.9.1",
+    "@preact/preset-vite": "^2.7.0",
+    "@types/chrome": "^0.0.253",
+    "eslint": "^9.9.1",
+    "globals": "^15.9.0",
+    "typescript": "^5.5.3",
+    "vite": "^5.4.2"
+  }
+}
