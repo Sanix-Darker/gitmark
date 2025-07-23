@@ -1,5 +1,5 @@
-import { defineConfig } from 'vite'
-import preact from '@preact/preset-vite'
+import { defineConfig } from 'vite';
+import preact from '@preact/preset-vite';
 
 export default defineConfig({
   plugins: [preact()],
@@ -9,28 +9,35 @@ export default defineConfig({
         popup: 'popup.html',
         options: 'options.html',
         content: 'content.js',
-        background: 'background.js'
+        background: 'background.js',
+        'content.css': 'content.css',  // Add CSS entries
+        'options.css': 'options.css'   // Add CSS entries
       },
       output: {
         entryFileNames: (chunkInfo) => {
-          // Keep original names for entry files
           return `${chunkInfo.name}.js`
         },
         chunkFileNames: '[name]-[hash].js',
         assetFileNames: (assetInfo) => {
           if (assetInfo.name?.endsWith('.css')) {
-            return '[name].css'
+            return '[name].css';
           }
-          return '[name].[ext]'
+          return '[name].[ext]';
         }
       }
     },
     outDir: 'dist',
     emptyOutDir: true,
-    minify: false, // Disable minification for debugging
-    sourcemap: true
+    minify: 'terser',
+    sourcemap: false,
+    terserOptions: {
+      compress: true,
+      format: {
+        comments: false,
+      },
+    },
   },
   define: {
     'process.env.NODE_ENV': '"production"'
   }
-})
+});

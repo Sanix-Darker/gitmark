@@ -1,5 +1,10 @@
-// Content script for GitLab/GitHub comment bookmarking
-// Using vanilla JS to avoid module import issues
+let originalConsoleLog = console.log;
+let enableConsoleLog = false;
+console.log = function() {
+    if (enableConsoleLog) {
+        originalConsoleLog.apply(console, arguments);
+    }
+};
 
 // Global variable to store platform configurations
 let PLATFORM_CONFIGS = null;

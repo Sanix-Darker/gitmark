@@ -1,5 +1,10 @@
-// Options page entry point - using vanilla JS to avoid module issues
-console.log('Options script loading...');
+let originalConsoleLog = console.log;
+let enableConsoleLog = false;
+console.log = function() {
+    if (enableConsoleLog) {
+        originalConsoleLog.apply(console, arguments);
+    }
+};
 
 // Global state for search and filtering
 let allBookmarks = {};
@@ -21,7 +26,7 @@ function createApp(isFullScreen = true) {
   const header = document.createElement('div');
   header.className = 'app-header';
   header.innerHTML = `
-    <h1 class="app-title">GitBookmark</h1>
+    <h1 class="app-title"><svg fill="#000000" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="18px" viewBox="0 0 535.72 535.72" xml:space="preserve" stroke="#000000" stroke-width="0.00535717" transform="rotate(180)"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="1.071434"></g><g id="SVGRepo_iconCarrier"> <g> <g> <path d="M371.563,0H164.156c-7.515,0-13.599,6.089-13.599,13.599v509.349c0,5.393,3.134,10.049,7.687,12.252 c3.042,1.471,7.98-0.445,10.532-2.662l99.083-86.09l99.083,86.09c2.553,2.217,7.49,4.139,10.533,2.662 c4.547-2.203,7.686-6.859,7.686-12.252V13.605C385.168,6.089,379.079,0,371.563,0z"></path> </g> </g> </g></svg>GitBookmark</h1>
   `;
 
   // Create search bar

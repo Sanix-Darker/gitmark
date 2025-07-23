@@ -1,3 +1,12 @@
+
+let originalConsoleLog = console.log;
+let enableConsoleLog = false;
+console.log = function() {
+    if (enableConsoleLog) {
+        originalConsoleLog.apply(console, arguments);
+    }
+};
+
 // Background script for the extension
 if (typeof chrome !== 'undefined' && chrome.runtime && chrome.runtime.onInstalled) {
   chrome.runtime.onInstalled.addListener(() => {
