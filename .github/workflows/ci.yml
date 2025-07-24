@@ -78,7 +78,7 @@ jobs:
     - name: Validate Chrome manifest
       run: |
         node -e "
-          const manifest = require('./manifest.json');
+          const manifest = require('./public/manifest.json');
           console.log('Chrome manifest valid:', manifest.manifest_version === 3);
           if (manifest.manifest_version !== 3) process.exit(1);
         "
@@ -86,7 +86,7 @@ jobs:
     - name: Validate Firefox manifest
       run: |
         node -e "
-          const manifest = require('./manifest-v2.json');
+          const manifest = require('./public/manifest-v2.json');
           console.log('Firefox manifest valid:', manifest.manifest_version === 2);
           if (manifest.manifest_version !== 2) process.exit(1);
         "
