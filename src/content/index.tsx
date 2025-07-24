@@ -113,19 +113,15 @@ class ContentScript {
     const container = range.commonAncestorContainer;
     const commentElement = this.findCommentElement(container);
 
-    //if (!commentElement) {
-    //  this.showNotification('Please select text within a comment', 'error');
-    //  return;
-    //}
 
     // Extract comment data
-    const commentData = URLParser.extractCommentData(commentElement ?? "");
+    const commentData = URLParser.extractCommentData(commentElement);
 
     // Create bookmark
     const bookmark: Bookmark = {
       id: Date.now().toString(),
       title: URLParser.generateTitle(selectedText, document.title),
-      permalink: URLParser.generateUniquePermalink(pageUrl, commentElement ?? "" ),
+      permalink: URLParser.generateUniquePermalink(pageUrl, commentElement),
       repository: urlData?.repository ?? "",
       platform: urlData?.platform ?? "",
       type: urlData?.type as any ?? "",

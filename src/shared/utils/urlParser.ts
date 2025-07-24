@@ -132,7 +132,7 @@ export class URLParser {
     return contextTitle || 'Untitled Bookmark';
   }
 
-  static generateUniquePermalink(url: string, commentElement: HTMLElement): string {
+  static generateUniquePermalink(url: string, commentElement: any): string {
     // Try to find a unique comment identifier
     const commentId = commentElement.id ||
                      commentElement.querySelector('[id]')?.id ||
@@ -148,7 +148,7 @@ export class URLParser {
     return `${url}${separator}t=${Date.now()}`;
   }
 
-  static extractCommentData(element: HTMLElement): {
+  static extractCommentData(element: any): {
     commentText: string;
     author: string;
     avatar: string;
