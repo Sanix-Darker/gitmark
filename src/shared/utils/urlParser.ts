@@ -11,7 +11,7 @@ export class URLParser {
   }
 
   static parseGitLabURL(url: string): URLData | null {
-    const gitlabRegex = /https?:\/\/(.*?)\/([^\/]+\/[^\/]+)\/-?\/(merge_requests|issues|epics)\/(\d+)(?:#note_(\d+))?/;
+    const gitlabRegex = /https?:\/\/(.*?)\/([^/]+\/[^/]+)\/-?\/(merge_requests|issues|epics)\/(\d+)(?:#note_(\d+))?/;
     const match = url.match(gitlabRegex);
 
     if (!match) return null;
@@ -30,7 +30,7 @@ export class URLParser {
   }
 
   static parseGitHubURL(url: string): URLData | null {
-    const githubRegex = /https?:\/\/(.*?)\/([^\/]+\/[^\/]+)\/(issues|pull|discussions)\/(\d+)(?:#issuecomment-(\d+))?/;
+    const githubRegex = /https?:\/\/(.*?)\/([^/]+\/[^/]+)\/(issues|pull|discussions)\/(\d+)(?:#issuecomment-(\d+))?/;
     const match = url.match(githubRegex);
 
     if (!match) return null;
@@ -49,7 +49,7 @@ export class URLParser {
   }
 
   static parseGiteaURL(url: string): URLData | null {
-    const giteaRegex = /https?:\/\/(.*?)\/([^\/]+\/[^\/]+)\/(issues|pulls)\/(\d+)(?:#issuecomment-(\d+))?/;
+    const giteaRegex = /https?:\/\/(.*?)\/([^/]+\/[^/]+)\/(issues|pulls)\/(\d+)(?:#issuecomment-(\d+))?/;
     const match = url.match(giteaRegex);
 
     if (!match) return null;
@@ -68,7 +68,7 @@ export class URLParser {
   }
 
   static parseBitbucketURL(url: string): URLData | null {
-    const bitbucketRegex = /https?:\/\/(.*?)\/([^\/]+\/[^\/]+)\/(issues|pull-requests)\/(\d+)(?:#comment-(\d+))?/;
+    const bitbucketRegex = /https?:\/\/(.*?)\/([^/]+\/[^/]+)\/(issues|pull-requests)\/(\d+)(?:#comment-(\d+))?/;
     const match = url.match(bitbucketRegex);
 
     if (!match) return null;
@@ -87,7 +87,7 @@ export class URLParser {
   }
 
   static parseSourcehutURL(url: string): URLData | null {
-    const sourcehutRegex = /https?:\/\/(.*?)\/([^\/]+\/[^\/]+)\/(issues|patches)\/(\d+)(?:#comment-(\d+))?/;
+    const sourcehutRegex = /https?:\/\/(.*?)\/([^/]+\/[^/]+)\/(issues|patches)\/(\d+)(?:#comment-(\d+))?/;
     const match = url.match(sourcehutRegex);
 
     if (!match) return null;
@@ -106,7 +106,7 @@ export class URLParser {
   }
 
   static parseAzureDevOpsURL(url: string): URLData | null {
-    const azureRegex = /https?:\/\/(.*?)\/([^\/]+\/[^\/]+)\/_workitems\/edit\/(\d+)(?:#comment-(\d+))?/;
+    const azureRegex = /https?:\/\/(.*?)\/([^/]+\/[^/]+)\/_workitems\/edit\/(\d+)(?:#comment-(\d+))?/;
     const match = url.match(azureRegex);
 
     if (!match) return null;
@@ -132,7 +132,7 @@ export class URLParser {
     return contextTitle || 'Untitled Bookmark';
   }
 
-  static generateUniquePermalink(url: string, commentElement: HTMLElement | any): string {
+  static generateUniquePermalink(url: string, commentElement: HTMLElement): string {
     // Try to find a unique comment identifier
     const commentId = commentElement.id ||
                      commentElement.querySelector('[id]')?.id ||
@@ -148,7 +148,7 @@ export class URLParser {
     return `${url}${separator}t=${Date.now()}`;
   }
 
-  static extractCommentData(element: HTMLElement | any): {
+  static extractCommentData(element: HTMLElement): {
     commentText: string;
     author: string;
     avatar: string;
