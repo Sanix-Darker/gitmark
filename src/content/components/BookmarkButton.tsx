@@ -17,7 +17,7 @@ export const BookmarkButton: React.FC<BookmarkButtonProps> = ({
 
   useEffect(() => {
     checkBookmarkStatus();
-  }, []);
+  });
 
   const checkBookmarkStatus = async () => {
     if (initialBookmark) {

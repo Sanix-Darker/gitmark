@@ -18,7 +18,8 @@
     "build:chrome": "npm run build && cp public/manifest.json dist/",
     "build:firefox": "npm run build && cp public/manifest-v2.json dist/manifest.json",
     "build:safari": "npm run build && cp public/safari-manifest.json dist/manifest.json",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint-fix": "eslint . --ext ts,tsx --fix --report-unused-disable-directives --max-warnings 0"
   },
   "dependencies": {
     "react": "^18.2.0",
