@@ -1,6 +1,6 @@
 {
   "manifest_version": 2,
-  "name": "GitBookmark - Universal Git Comment Bookmarks",
+  "name": "gitMark - Universal Git Comment Bookmarks",
   "version": "1.0.0",
   "description": "Universal bookmark manager for Git platform comments (GitLab, GitHub, Gitea, Bitbucket, SourceHut, Azure DevOps)",
 

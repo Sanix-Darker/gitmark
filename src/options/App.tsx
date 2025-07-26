@@ -105,7 +105,7 @@ export const App: React.FC = () => {
     //  const welcomeMessage = document.createElement('div');
     //  welcomeMessage.className = 'welcome-message';
     //  welcomeMessage.innerHTML = `
-    //    <h2>Welcome to GitBookmark!</h2>
+    //    <h2>Welcome to GitMark!</h2>
     //    <p>Start bookmarking comments on your favorite Git platforms.</p>
     //    <button onclick="this.parentElement.remove()">Got it!</button>
     //  `;

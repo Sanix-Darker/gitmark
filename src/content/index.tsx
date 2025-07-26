@@ -182,5 +182,5 @@ class ContentScript {
 }
 
 // Initialize content script
-console.log('Loading GitBookmark content script...');
+console.log('Loading gitMark content script...');
 new ContentScript();

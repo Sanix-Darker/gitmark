@@ -1,167 +1,105 @@
-# GitBookmark - Universal Git Comment Bookmark Extension
+# GitMark - Universal Git Comment Bookmark Extension
+![Screenshot](./screenshot.png)
 
-![image](./screenshot.png)
+A web extension for bookmarking comments/code across Git platforms with repository-centric organization.
 
-A sophisticated web extension for bookmarking comments across multiple Git platforms with repository-centric organization.
+## Browser Support
 
-## SUPPORTED PLATFORMS
+| Browser       | Status          |
+|---------------|-----------------|
+| Chrome/Edge   | ✅ Supported    |
+| Firefox       | 🚧 In Progress  |
+| Safari        | ❌ Planned      |
 
-- **GitLab** (gitlab.com and self-hosted instances)
-- **GitHub** (github.com and GitHub Enterprise)
-- **Gitea** (gitea.io, codeberg.org, and self-hosted)
-- **Bitbucket** (bitbucket.org and Bitbucket Server)
-- **SourceHut** (sr.ht and self-hosted)
-- **Azure DevOps** (dev.azure.com and on-premises)
-- **CodeGiant** (codegiant.io)
-- **GitKraken** (gitkraken.com)
+## Supported Platforms
 
+| Platform          | Cloud                  |
+|-------------------|------------------------|
+| GitLab            | ✅ gitlab.com          |
+| GitHub            | ✅ github.com          |
+| Gitea             | ✅ codeberg.org        |
+| Bitbucket         | ✅ bitbucket.org       |
+| SourceHut         | ✅ sr.ht               |
+| Azure DevOps      | ✅ dev.azure.com       |
+| CodeGiant         | ✅ codegiant.io        |
+| GitKraken         | ✅ gitkraken.com       |
 
-## FEATURES
+## Core Features
 
-### CORE BOOKMARKING
+| Feature                          | Description                                          |
+|----------------------------------|------------------------------------------------------|
+| One-Click Bookmarking            | Save comments/code with single click                 |
+| Auto-Title Suggestion            | Titles from comment text or parent context           |
+| Repository Organization          | Grouped by `namespace/project` hierarchy            |
+| Expandable Sections              | Collapse/expand repos and discussion threads         |
+| Instant Search                   | Find bookmarks with highlighted results              |
+| Cross-Platform Export            | Download all bookmarks as JSON                       |
 
-- **One-click bookmarking** across all supported Git platforms
-- **Auto-title suggestion** from comment text or parent MR/issue title
-- **Manual title override** with inline editing
-- **Context preservation** (comment text, author, timestamp, permalink)
+## Installation
 
-### REPOSITORY-CENTRIC ORGANIZATION
+1. Clone repo: `git clone https://github.com/your-repo/gitmark`
+2. Install dependencies: `npm install`
+3. Build extension: `npm run build`
+4. Load in Chrome:
+   - Go to `chrome://extensions`
+   - Enable **Developer mode**
+   - Click **Load unpacked** → Select `/dist` folder
 
-- **Auto-grouping** by `namespace/project` hierarchy
-- **Sub-grouping** within repos (MRs, Issues, Epics, Snippets)
-- **Expandable/collapsible** repository sections
-- **Bookmark counters** per repository
+## Usage
 
-### SEARCH & NAVIGATION
+1. Navigate to supported Git platform (GitHub PR, GitLab MR, etc.)
+2. Click **📑 icon** on any comment
+3. Access bookmarks via extension popup:
+   ```plaintext
+   repo-name/
+   ├── MR #123 (3 bookmarks)
+   ├── Issue #456 (2 bookmarks)
+   └── Snippets (1 bookmark)
+   ```
+4. Export data via **Export** button
 
-- **Instant search** across all bookmarks with highlighting
-- **Repository filtering** and scoped search
-- **Multiple sort options** (recent, alphabetical, frequency)
-- **Visual repository dashboard**
+## Technical Overview
 
-## INSTALLATION
-
-### DEVELOPMENT
-
-1. Clone/download the extension files
-2. Run `npm install` to install dependencies
-3. Run `npm run build` to build the extension
-4. Open Chrome/Edge and navigate to `chrome://extensions/`
-5. Enable "Developer mode"
-6. Click "Load unpacked" and select the `dist` folder
-
-## USAGE
-
-### BOOKMARKING COMMENTS
-
-1. Navigate to a GitLab MR/Issue or GitHub PR/Issue
-2. Find the comment you want to bookmark
-3. Click the bookmark button (📑) that appears in the comment header
-4. The comment will be automatically organized by repository
-
-### ORGANIZATION
-
-Bookmarks are automatically grouped by:
-```
-repository-name/
-├── MR #123 (3 bookmarks)
-├── Issue #456 (2 bookmarks)
-└── Snippets (1 bookmark)
+### URL Pattern Support
+```regex
+GitLab: /group/project/-/merge_requests/123#note_456
+GitHub: /user/repo/issues/123#issuecomment-456
 ```
 
-### EXPORT
-
-Click "Export" in the footer to download all bookmarks as JSON.
-
-## TECHNICAL DETAILS
-
-### ARCHITECTURE
-
-- **Framework**: Preact (lightweight React alternative)
-- **Manifest**: V3 (latest Chrome extension standard)
-- **Storage**: Chrome Storage API (local)
-- **Content Scripts**: Inject bookmark buttons into GitLab/GitHub
-- **Background**: Service worker for extension management
-
-### FILE STRUCTURE
-
-```
-├── manifest.json           # Extension manifest
-├── background.js           # Service worker
-├── content.js             # Content script injection
-├── popup.html/js          # Popup interface
-├── options.html/js        # Full-screen interface
-├── src/
-│   ├── components/        # Preact components
-│   └── utils/            # Storage & parsing utilities
-└── styles.css            # Monochrome theme
-```
-
-### URL PARSING
-
-Supports GitLab and GitHub URL patterns:
-- GitLab: `https://gitlab.com/group/project/-/merge_requests/123#note_456`
-- GitHub: `https://github.com/user/repo/issues/123#issuecomment-456`
-
-### STORAGE SCHEMA
-
+### Storage Schema
 ```json
 {
-  "namespace/repository": [
+  "namespace/repo": [
     {
-      "id": "timestamp",
-      "title": "Gean-Was-There title",
-      "permalink": "Direct comment URL",
-      "repository": "namespace/project",
-      "platform": "gitlab|github|xyz",
-      "type": "merge_requests|issues|epics",
-      "contextId": 123,
-      "commentText": "Full comment content",
-      "author": "sanix-darker",
-      "avatar": "avatar URL",
-      "timestamp": "ISO date string"
+      "id": "unique-id",
+      "title": "Suggested title",
+      "permalink": "https://...",
+      "platform": "gitlab",
+      "type": "merge_request",
+      "commentText": "Saved content...",
+      "author": "username",
+      "timestamp": "ISO-8601"
     }
   ]
 }
 ```
 
-## BROWSER COMPATIBILITY
-
-- **Chrome 88+** (Manifest V3 support)
-- **Edge 88+** (Chromium-based)
-- **Firefox 109+** (Manifest V2 version included)
-- **Safari 14+** (Safari extension version included)
-
-## CROSS-BROWSER BUILDING
-
+## Build Commands
 ```bash
-npm run build:cross-browser  # Build for all browsers
-npm run build:chrome        # Chrome/Edge specific build
-npm run build:firefox       # Firefox specific build
-npm run build:safari        # Safari specific build
+# Browser-specific builds
+npm run build:chrome    # Chrome/Edge
+npm run build:firefox   # Firefox
+npm run build:safari    # Safari
+
+# Cross-browser build
+npm run build:cross-browser
 ```
 
-### BROWSER-SPECIFIC FILES
-
-- `manifest.json` - Chrome/Edge (Manifest V3)
-- `manifest-v2.json` - Firefox (Manifest V2)
-- `safari-manifest.json` - Safari (Manifest V2)
-- `cross-browser-build.js` - Build script for all browsers
-
-## REGARDING PRIVACY
-
-- All data stored locally in browser
-- No external servers or tracking
-- No network requests except to GitLab/GitHub
-- Open source and transparent
-
-## DEVELOPMENT
-
-```bash
-npm install          # Install dependencies
-npm run dev         # Development server
-npm run build       # Production build
-```
+## Privacy
+- Zero external servers
+- All data stored locally in your browser
+- Open-source code with no tracking
 
 ## AUTHOR
 
+- [Sanix-Darker](https://github.com/sanix-darker)

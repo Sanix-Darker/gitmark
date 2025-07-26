@@ -5,13 +5,13 @@ export function setupContextMenu() {
   // Create context menu items
   chrome.contextMenus.create({
     id: 'bookmark-selection',
-    title: 'Git Bookmark selected text',
+    title: 'git mark selected text',
     contexts: ['selection']
   });
 
   chrome.contextMenus.create({
     id: 'bookmark-link',
-    title: 'Git Bookmark this link',
+    title: 'git mark this link',
     contexts: ['link']
   });
 
