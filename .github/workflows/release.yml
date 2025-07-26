@@ -29,22 +29,21 @@ jobs:
       run: npm test
 
     - name: Build all browser versions
-      run: npm run build:cross-browser
+      run: npm run build
 
     - name: Create Chrome extension package
       run: |
-        cd dist-chrome
+        cd ./dist
         zip -r ../gitbookmark-chrome-${{ github.ref_name }}.zip .
 
-    - name: Create Firefox extension package
-      run: |
-        cd dist-firefox
-        zip -r ../gitbookmark-firefox-${{ github.ref_name }}.zip .
-
-    - name: Create Safari extension package
-      run: |
-        cd dist-safari
-        zip -r ../gitbookmark-safari-${{ github.ref_name }}.zip .
+    #- name: Create Firefox extension package
+    #  run: |
+    #    cd dist-firefox
+    #    zip -r ../gitbookmark-firefox-${{ github.ref_name }}.zip .
+    #- name: Create Safari extension package
+    #  run: |
+    #    cd dist-safari
+    #    zip -r ../gitbookmark-safari-${{ github.ref_name }}.zip .
 
     - name: Create Release
       id: create_release
