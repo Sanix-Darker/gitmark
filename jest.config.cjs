@@ -1,37 +1,32 @@
 module.exports = {
+  preset: 'ts-jest',
   testEnvironment: 'jsdom',
   setupFilesAfterEnv: ['<rootDir>/tests/setup.js'],
-  testMatch: [
-    '<rootDir>/tests/**/*.test.js',
-    '<rootDir>/tests/**/*.spec.js'
-  ],
-  collectCoverageFrom: [
-    'src/**/*.js',
-    'content.js',
-    'background.js',
-    'popup.js',
-    'options.js',
-    '!src/main.tsx',
-    '!src/vite-env.d.ts',
-    '!**/node_modules/**'
-  ],
-  coverageDirectory: 'coverage',
-  coverageReporters: ['text', 'lcov', 'html'],
   moduleNameMapper: {
+    '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
     '^@/(.*)$': '<rootDir>/src/$1'
   },
   transform: {
-    '^.+\\.jsx?$': 'babel-jest'
+    '^.+\\.(ts|tsx)$': 'ts-jest',
+    '^.+\\.(js|jsx)$': 'babel-jest',
   },
-  testTimeout: 10000,
-  verbose: true,
-  // extensionsToTreatAsEsm: ['.js'],
+  testMatch: [
+    '<rootDir>/tests/**/*.test.(ts|tsx|js)',
+    '<rootDir>/src/**/*.test.(ts|tsx|js)'
+  ],
+  collectCoverageFrom: [
+    'src/**/*.{ts,tsx}',
+    '!src/**/*.d.ts',
+    '!src/**/index.tsx',
+    '!src/**/*.stories.tsx'
+  ],
   globals: {
     'ts-jest': {
-      useESM: true
+      tsconfig: {
+        jsx: 'react'
+      }
     }
   },
-  transformIgnorePatterns: [
-    'node_modules/(?!(.*\\.mjs$))'
-  ]
+  extensionsToTreatAsEsm: ['.ts', '.tsx'],
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node']
 };

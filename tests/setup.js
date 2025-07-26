@@ -1,66 +1,42 @@
-// Jest setup file
-// import 'jest-webextension-mock';
+// tests/setup.js
+import '@testing-library/jest-dom';
+import 'jest-webextension-mock'; // Use this instead of jest-chrome
 
-// Mock Chrome APIs
-global.chrome = {
-  storage: {
-    local: {
-      get: jest.fn(),
-      set: jest.fn(),
-      remove: jest.fn(),
-      clear: jest.fn()
-    }
-  },
-  runtime: {
-    sendMessage: jest.fn(),
-    onMessage: {
-      addListener: jest.fn(),
-      removeListener: jest.fn()
-    },
-    openOptionsPage: jest.fn(),
-    getURL: jest.fn((path) => `chrome-extension://test/${path}`)
-  },
-  tabs: {
-    create: jest.fn(),
-    query: jest.fn()
-  },
-  action: {
-    setBadgeText: jest.fn(),
-    onClicked: {
-      addListener: jest.fn()
-    }
-  }
-};
+// The chrome mock is already provided by jest-webextension-mock
+// No need to manually mock chrome APIs
 
-// Mock DOM methods
-global.MutationObserver = jest.fn().mockImplementation(() => ({
-  observe: jest.fn(),
-  disconnect: jest.fn(),
-  takeRecords: jest.fn()
-}));
-
-// Mock fetch for platform configs
+// Mock fetch
 global.fetch = jest.fn();
 
-// Mock console methods to reduce noise in tests
-global.console = {
-  ...console,
-  log: jest.fn(),
-  error: jest.fn(),
-  warn: jest.fn(),
-  info: jest.fn()
-};
-
-// Reset mocks before each test
+// Additional setup if needed
 beforeEach(() => {
   jest.clearAllMocks();
 
-  // Reset chrome storage mock
-  chrome.storage.local.get.mockResolvedValue({});
-  chrome.storage.local.set.mockResolvedValue();
+  // Reset chrome storage mocks
+  chrome.storage.local.get.mockImplementation((keys, callback) => {
+    if (callback) callback({});
+    return Promise.resolve({});
+  });
+
+  chrome.storage.local.set.mockImplementation((items, callback) => {
+    if (callback) callback();
+    return Promise.resolve();
+  });
 
   // Reset fetch mock
-  fetch.mockResolvedValue({
-    json: () => Promise.resolve({})
+  global.fetch.mockResolvedValue({
+    json: () => Promise.resolve({}),
+    text: () => Promise.resolve(''),
+    ok: true
   });
 });
+
+// Mock window.location if needed
+delete window.location;
+window.location = {
+  href: 'https://github.com/user/repo/issues/123',
+  hostname: 'github.com',
+  pathname: '/user/repo/issues/123',
+  search: '',
+  hash: ''
+};
