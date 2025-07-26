@@ -45,9 +45,6 @@ jobs:
     - name: Build extension
       run: npm run build
 
-    - name: Build cross-browser versions
-      run: npm run build:cross-browser
-
   security:
     runs-on: ubuntu-latest
 
