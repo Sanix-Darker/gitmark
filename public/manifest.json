@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "gitMark - Universal Git Comment Bookmarks",
   "version": "1.0.0",
-  "description": "Universal bookmark manager for Git platform comments",
+  "description": "Universal bookmark manager for Git platform comments and code.",
 
   "permissions": [
     "storage",
