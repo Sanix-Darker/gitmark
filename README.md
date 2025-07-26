@@ -1,7 +1,7 @@
-# GitMark - Universal Git Comment Bookmark Extension
+# GitMark - Universal Git Bookmark Extension
 ![Screenshot](./screenshot.png)
 
-A web extension for bookmarking comments/code across Git platforms with repository-centric organization.
+A web extension for bookmarking MR|PR's/issues's comments/code across Git platforms with repository-centric organization.
 
 ## Browser Support
 
