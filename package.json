@@ -50,7 +50,7 @@
     "jest-environment-jsdom": "^29.7.0",
     "jest-webextension-mock": "^3.9.1",
     "rollup-plugin-copy": "^3.5.0",
-    "ts-jest": "^29.2.5",
+    "ts-jest": "^29.4.0",
     "typescript": "^5.2.2",
     "vite": "^7.0.6"
   }
