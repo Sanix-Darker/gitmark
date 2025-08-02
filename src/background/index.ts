@@ -5,7 +5,7 @@ console.log('Background script initializing...');
 
 // Initialize background script
 chrome.runtime.onInstalled.addListener(() => {
-  console.log('GitBookmark extension installed');
+  console.log('GitMark extension installed');
   setupContextMenu();
 });
 

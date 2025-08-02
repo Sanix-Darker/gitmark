@@ -16,7 +16,7 @@ class ContentScript {
   }
 
   async init() {
-    console.log('GitBookmark content script initializing...');
+    console.log('gitMark content script initializing...');
 
     // Start injection process
     if (document.readyState === 'loading') {

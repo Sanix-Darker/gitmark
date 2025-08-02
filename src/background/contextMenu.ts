@@ -2,16 +2,17 @@ import { BookmarkStorageManager } from '../shared/utils/storage';
 import { URLParser } from '../shared/utils/urlParser';
 
 export function setupContextMenu() {
+  console.log("Context menu loaded.");
   // Create context menu items
   chrome.contextMenus.create({
     id: 'bookmark-selection',
-    title: 'git mark selected text',
+    title: 'gitMark selected code/text',
     contexts: ['selection']
   });
 
   chrome.contextMenus.create({
     id: 'bookmark-link',
-    title: 'git mark this link',
+    title: 'gitMark this link',
     contexts: ['link']
   });
 
@@ -48,30 +49,33 @@ async function handleLinkBookmark(info: chrome.contextMenus.OnClickData, _tab: c
   // Parse the URL to see if it's a supported Git platform
   const urlData = URLParser.parseURL(linkUrl);
 
-  if (urlData) {
-    // Create a bookmark for the link
-    const bookmark = {
-      id: Date.now().toString(),
-      title: `Link to ${urlData.type} #${urlData.id}`,
-      permalink: linkUrl,
-      repository: urlData.repository,
-      platform: urlData.platform,
-      type: urlData.type as any,
-      contextId: urlData.id,
-      commentText: '',
-      author: 'Via context menu',
-      avatar: '',
-      timestamp: new Date().toISOString()
-    };
-
-    await BookmarkStorageManager.addBookmark(bookmark);
-
-    // Show notification
-    chrome.notifications.create({
-      type: 'basic',
-      iconUrl: '/icons/icon-48.png',
-      title: 'Bookmark Added',
-      message: `Bookmarked ${urlData.type} #${urlData.id} from ${urlData.repository}`
-    });
+  if (!urlData) {
+      console.error("No valid url found");
+      return;
   }
+
+  // Create a bookmark for the link
+  const bookmark = {
+    id: Date.now().toString(),
+    title: `Link to ${urlData.type} #${urlData.id}`,
+    permalink: linkUrl,
+    repository: urlData.repository,
+    platform: urlData.platform,
+    type: urlData.type as any,
+    contextId: urlData.id,
+    commentText: '',
+    author: 'Via context menu',
+    avatar: '',
+    timestamp: new Date().toISOString()
+  };
+
+  await BookmarkStorageManager.addBookmark(bookmark);
+
+  // Show notification
+  chrome.notifications.create({
+    type: 'basic',
+    iconUrl: '/icons/icon-48.png',
+    title: 'Bookmark Added',
+    message: `Bookmarked ${urlData.type} #${urlData.id} from ${urlData.repository}`
+  });
 }
