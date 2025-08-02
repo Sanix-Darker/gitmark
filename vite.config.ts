@@ -42,14 +42,14 @@ export default defineConfig({
         },
         chunkFileNames: 'js/[name]-[hash].js',
         assetFileNames: (assetInfo) => {
-          if (assetInfo.name?.endsWith('.css')) {
-            // Place content.css at root css/ directory
-            if (assetInfo.name.includes('content')) {
-              return 'css/content.css';
-            }
-            return 'css/[name][extname]';
+          if (!assetInfo.name?.endsWith('.css')) {
+            return 'assets/[name][extname]';
           }
-          return 'assets/[name][extname]';
+          // Place content.css at root css/ directory
+          if (!assetInfo.name.includes('content')) {
+              return 'css/[name][extname]';
+          }
+          return 'css/content.css';
         },
       },
     },
