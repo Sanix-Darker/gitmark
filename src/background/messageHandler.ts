@@ -1,5 +1,5 @@
 export function setupMessageHandlers() {
-  console.log('Setting up message handlers...');
+  console.log("MessageHandlers menu loaded.");
 
   chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     console.log('Background received message:', request.action);
