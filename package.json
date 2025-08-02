@@ -15,7 +15,6 @@
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "test:ci": "jest --ci --coverage --maxWorkers=2",
-    "build:cross-browser": "node scripts/cross-browser-build.js",
     "build:chrome": "npm run build && cp public/manifest.json dist/",
     "build:firefox": "npm run build && cp public/manifest-v2.json dist/manifest.json",
     "build:safari": "npm run build && cp public/safari-manifest.json dist/manifest.json",

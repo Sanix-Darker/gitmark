@@ -90,9 +90,6 @@ GitHub: /user/repo/issues/123#issuecomment-456
 npm run build:chrome    # Chrome/Edge
 npm run build:firefox   # Firefox
 npm run build:safari    # Safari
-
-# Cross-browser build
-npm run build:cross-browser
 ```
 
 ## Privacy
