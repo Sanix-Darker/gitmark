@@ -22,7 +22,7 @@
     "lint-fix": "eslint . --ext ts,tsx --fix --report-unused-disable-directives --max-warnings 0"
   },
   "dependencies": {
-    "react": "^18.2.0",
+    "react": "^19.1.1",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
@@ -35,7 +35,7 @@
     "@testing-library/user-event": "^14.6.1",
     "@types/chrome": "^0.1.4",
     "@types/jest": "^30.0.0",
-    "@types/react": "^18.2.66",
+    "@types/react": "^19.1.10",
     "@types/react-dom": "^18.2.22",
     "@typescript-eslint/eslint-plugin": "^7.2.0",
     "@typescript-eslint/parser": "^7.2.0",
