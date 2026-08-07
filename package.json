@@ -51,6 +51,6 @@
     "rollup-plugin-copy": "^3.5.0",
     "ts-jest": "^29.4.1",
     "typescript": "^5.9.2",
-    "vite": "^7.1.2"
+    "vite": "^8.2.0"
   }
 }
